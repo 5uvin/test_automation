@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Sequence>
+            <!-- <RetryUntilSuccessful num_attempts="3"> -->
+            <Condition ID="WaitForTopics" topic1_name="/odom"/>
+            <!-- </RetryUntilSuccessful> -->
+            <ReactiveSequence>
+                <ReactiveFallback>
+                    <Sequence>
+                        <Action ID="TestIterationMonitor" total_tests="{total_tests}"/>
+                        <!-- <Condition ID="BatteryIsNotCharging"/> -->
+                    </Sequence>
+                    <Sequence>
+                        <!-- <ReactiveFallback> -->
+                            <!-- <Condition ID="IsAtPose" angular_threshold="0.35" linear_threshold="0.25" pose="{charging_station}"/> -->
+                        <Action ID="GoTo" pose="{charging_station}"/>
+                        <!-- </ReactiveFallback> -->
+                        <Action ID="KillRosNodes"/>
+                    </Sequence>
+                </ReactiveFallback>
+                <Sequence>
+                    <!-- <RetryUntilSuccessful num_attempts="3"> -->
+                    <Action ID="GoTo" pose="{charging_station}"/>
+                    <!-- </RetryUntilSuccessful> -->
+                    <StartRosbagRecord topics="/amcl_pose /tf /scan" bag_path="/home/user/bt_ws/$(date +%F)/straightLine_$(date +%H-%M-%S)"/>
+                    <Action ID="GoTo" pose="{pose_of_interest2}"/>
+                    <Action ID="IncrementCounter" key="total_tests" start_value="{total_tests}"/>
+                    <StopRosbagRecord/>
+                </Sequence>
+            </ReactiveSequence>
+        </Sequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Condition ID="BatteryIsNotCharging"/>
+        <Condition ID="BatteryLevelAbove">
+            <input_port name="reference_value"/>
+        </Condition>
+        <Action ID="GoTo">
+            <input_port name="pose"/>
+        </Action>
+        <Condition ID="IsAtPose">
+            <input_port default="0.35" name="angular_threshold">in radians</input_port>
+            <input_port default="0.25" name="linear_threshold">in meters</input_port>
+            <input_port name="pose">in geometry_msgs::msg::Pose</input_port>
+        </Condition>
+        <Action ID="KillRosNodes"/>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
