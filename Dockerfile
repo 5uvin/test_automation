@@ -7,11 +7,15 @@ RUN apt update && apt install -y \
     python3-colcon-common-extensions \
     python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
+    
+RUN apt update && apt install -y \
+    ros-humble-navigation2 \
+    ros-humble-nav2-bringup \
+    && rm -rf /var/lib/apt/lists/*
 # Set workspace
 WORKDIR /ros2_ws
-COPY ./test_automation_pkg ./src/test_automation_pkg
-COPY ./ros2_bt_utils ./src/ros2_bt_utils
-COPY ./Groot ./src/Groot
+COPY ./test_automation ./src/test_automation
+COPY ./third_party ./src/third_party
 # Build your code
 RUN . /opt/ros/humble/setup.bash && \
     apt update && apt upgrade -y && \
