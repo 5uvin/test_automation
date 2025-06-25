@@ -22,8 +22,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo usermod -aG docker $USER
 newgrp docker
 ```
-4. Build Docker image
+3. Clone this repo
 ```
+git clone --recurse-submodules git@github.com:5uvin/test_automation.git
+```
+
+5. Build Docker image
+```
+cd test_automation
 docker build -t test_automation .
 ```
 3. Create Container from image
