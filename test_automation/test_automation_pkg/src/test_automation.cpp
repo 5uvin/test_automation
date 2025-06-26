@@ -386,38 +386,31 @@ int main(int argc, char ** argv)
   auto tree = factory.createTreeFromFile(param_bt_filename.value_to_string().c_str(), blackboard);
 
   geometry_msgs::msg::Pose charging_station_pose;
-  charging_station_pose.position.x = 1.0;
-  charging_station_pose.position.y = 8.0;
+  charging_station_pose.position.x = 1.1398714780807495;
+  charging_station_pose.position.y = 0.5856299996376038;
 
-  charging_station_pose.orientation.z = 0.707;
-  charging_station_pose.orientation.w = 0.707;
+  charging_station_pose.orientation.z = 0.7002860307693481;
+  charging_station_pose.orientation.w = 0.7138128280639648;
 
   blackboard->set("charging_station", charging_station_pose);
 
   geometry_msgs::msg::Pose pose_of_interest1;
-  pose_of_interest1.position.x = 1.0;
-  pose_of_interest1.position.y = 3.0;
+  pose_of_interest1.position.x = 2.5840141773223877;
+  pose_of_interest1.position.y = -1.8378535509109497;
 
-  pose_of_interest1.orientation.z = 0.707;
-  pose_of_interest1.orientation.w = 0.707;
+  pose_of_interest1.orientation.z = 0.918582558631897;
+  pose_of_interest1.orientation.w = 0.39520755410194397;
 
   blackboard->set("pose_of_interest1", pose_of_interest1);
 
   geometry_msgs::msg::Pose pose_of_interest2;
-  pose_of_interest2.position.x = 4.0;
-  pose_of_interest2.position.y = 3.0;
+  pose_of_interest2.position.x = -1.6733359098434448;
+  pose_of_interest2.position.y = 2.099357843399048;
 
-  pose_of_interest2.orientation.z = 0.707;
-  pose_of_interest2.orientation.w = 0.707;
+  pose_of_interest2.orientation.z = -0.3917270004749298;
+  pose_of_interest2.orientation.w = 0.9199512600898743;
 
   blackboard->set("pose_of_interest2", pose_of_interest2);
-
-  geometry_msgs::msg::Pose pose_of_interest3;
-  pose_of_interest2.position.x = 4.0;
-  pose_of_interest2.position.y = 5.0;
-
-  pose_of_interest2.orientation.z = 0.707;
-  pose_of_interest2.orientation.w = 0.707;
 
 //   geometry_msgs::msg::Pose pose_of_interest3;
 //   pose_of_interest2.position.x = 4.0;
