@@ -27,12 +27,16 @@ newgrp docker
 git clone --recurse-submodules git@github.com:5uvin/test_automation.git
 ```
 
-5. Build Docker image
+4. Build Docker image
 ```
 cd test_automation
 docker build -t test_automation .
 ```
-3. Create Container from image
+5. Create Container from image
 ```
 docker run -it --name test_automation_container --network=host test_automation
+```
+6. Open bash shell in container
+```
+docker exec -it test_automation_container /bin/bash
 ```
