@@ -25,4 +25,5 @@ RUN . /opt/ros/humble/setup.bash && \
 
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source /ros2_ws/install/setup.bash" >> ~/.bashrc
+RUN echo "export FASTDDS_BUILTIN_TRANSPORTS=UDPv4" >> ~/.bashrc
 ENTRYPOINT ["/bin/bash"]
